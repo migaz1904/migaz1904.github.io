@@ -282,6 +282,90 @@
     .personalizar-btn:hover {
       opacity: 0.9;
     }
+/* ===== Melhorias para ecrãs maiores ===== */
+
+/* Tablets e acima */
+@media (min-width: 768px) {
+  /* Tipografia um pouco maior */
+  h1 { font-size: 28px; }
+  .menu-rapido-titulo { font-size: 20px; }
+
+  /* Cartões do menu */
+  .menu-item {
+    width: 220px;
+    padding: 14px;
+  }
+  .menu-item img {
+    height: 170px;              /* dá corpo à imagem */
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .menu-item h3 { font-size: 18px; }
+
+  /* Cartões de preço (renderizados dinamicamente) */
+  .preco-card {
+    min-width: 220px;
+    padding: 18px;
+  }
+  .preco-card h4 { font-size: 18px; }
+  .preco-card p  { font-size: 18px; }
+
+  /* Ligas */
+  .liga-card {
+    min-width: 220px;
+    padding: 18px;
+  }
+  .liga-card img {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Tabelas de medidas */
+  .tabela-medidas {
+    width: 360px;     /* mais largo no desktop */
+    height: 300px;    /* mantém alturas alinhadas */
+    padding: 14px;
+  }
+  .tabela-com-imagem img {
+    max-width: 70px;
+  }
+  .tabela-com-imagem table {
+    font-size: 13px;
+  }
+}
+
+/* Desktop largo */
+@media (min-width: 1200px) {
+  /* Deixa de ser "carrossel" e vira grelha bonita */
+  .precos-container,
+  .ligas-container {
+    white-space: normal;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    overflow-x: visible;     /* sem scroll horizontal */
+  }
+
+  .menu { gap: 24px; }
+
+  /* Mais espaço nos cartões */
+  .menu-item       { width: 240px; }
+  .preco-card      { min-width: 240px; }
+  .liga-card       { min-width: 240px; }
+  .tabela-medidas  { width: 400px; height: 320px; }
+
+  /* Títulos um pouco maiores */
+  .preco-card h4,
+  .liga-card p { font-size: 19px; }
+  .preco-card p  { font-size: 19px; }
+}
+
+/* Ajuste geral de fontes com clamp (opcional, mas elegante) */
+h1 { font-size: clamp(22px, 2.2vw, 32px); }
+.menu-item h3,
+.preco-card h4 { font-size: clamp(16px, 1.6vw, 20px); }
+.preco-card p { font-size: clamp(15px, 1.5vw, 20px); }
+    
   </style>
 </head>
 <body>
