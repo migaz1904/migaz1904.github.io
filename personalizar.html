@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personalização</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f7f7f7;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    input[type="color"],
+    input[type="text"],
+    input[type="file"],
+    select,
+    textarea {
+      margin-top: 5px;
+      padding: 6px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #FF9A00;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: #e08800;
+    }
+    .bloco-container {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+      background: white;
+      border-radius: 5px;
+    }
+    .bloco-container h4 {
+      margin: 0 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Personalizar Catálogo</h2>
+
+  <!-- CAMPOS DE ESTILO -->
+  <label for="titulo">Título da Página</label>
+  <input type="text" id="titulo" placeholder="Ex: 123 TESTE - Catálogo" />
+
+  <label for="corPrincipal">Cor Principal</label>
+  <input type="color" id="corPrincipal" value="#FF9A00" />
+
+  <label for="corFundo">Cor de Fundo</label>
+  <input type="color" id="corFundo" value="#ffffff" />
+
+  <label for="corTexto">Cor do Texto</label>
+  <input type="color" id="corTexto" value="#000000" />
+
+  <label for="corTitulo">Cor dos Títulos</label>
+  <input type="color" id="corTitulo" value="#FF9A00" />
+
+  <label for="corBorda">Cor da Borda dos Blocos</label>
+  <input type="color" id="corBorda" value="#FF9A00" />
+
+  <label for="corRodapeTexto">Cor do Texto do Rodapé</label>
+  <input type="color" id="corRodapeTexto" value="#ffffff" />
+
+  <label for="corRodapeFundo">Cor de Fundo do Rodapé</label>
+  <input type="color" id="corRodapeFundo" value="#000000" />
+
+  <label for="corOutrasLigasBtn">Cor do Botão "Outras Ligas"</label>
+  <input type="color" id="corOutrasLigasBtn" value="#FF9A00" />
+
+  <label for="corTopoBtn">Cor do Botão "Voltar ao Topo"</label>
+  <input type="color" id="corTopoBtn" value="#FF9A00" />
+
+  <label for="fonteSite">Fonte do Site</label>
+  <select id="fonteSite">
+    <option value="Arial">Arial</option>
+    <option value="Verdana">Verdana</option>
+    <option value="Georgia">Georgia</option>
+    <option value="Tahoma">Tahoma</option>
+    <option value="Courier New">Courier New</option>
+  </select>
+
+  <label for="logoUrl">URL do Logotipo</label>
+  <input type="text" id="logoUrl" placeholder="https://exemplo.com/logo.png" />
+
+  <label for="fundoSite">Imagem de Fundo do Site</label>
+  <input type="file" id="fundoSite" accept="image/*" />
+
+  <label for="fundoHeader">Imagem de Fundo do Cabeçalho</label>
+  <input type="file" id="fundoHeader" accept="image/*" />
+
+  <label for="mostrarTabelaMedidas">
+    <input type="checkbox" id="mostrarTabelaMedidas" checked />
+    Mostrar seção "Tabela de Medidas"
+  </label>
+
+  <!-- CRIAÇÃO DE BLOCOS PERSONALIZADOS -->
+  <hr>
+  <h3>Blocos Personalizados</h3>
+
+  <label for="blocoTitulo">Título do Bloco</label>
+  <input type="text" id="blocoTitulo" />
+
+  <label for="blocoTexto">Texto do Bloco</label>
+  <textarea id="blocoTexto" rows="3"></textarea>
+
+  <label for="blocoBtnTexto">Texto do Botão</label>
+  <input type="text" id="blocoBtnTexto" />
+
+  <label for="blocoBtnLink">Link do Botão</label>
+  <input type="text" id="blocoBtnLink" />
+
+  <label for="blocoImagem">Imagem do Bloco</label>
+  <input type="file" id="blocoImagem" accept="image/*" />
+
+  <label for="blocoPosicao">Posição na Página</label>
+  <select id="blocoPosicao">
+    <option value="antes-menu">Antes do Menu Rápido</option>
+    <option value="antes-ligas">Antes das Ligas</option>
+    <option value="antes-rodape">Antes do Rodapé</option>
+  </select>
+
+  <button onclick="adicionarBloco()">Adicionar Bloco</button>
+
+  <div id="blocosLista"></div>
+
+  <button onclick="salvarConfiguracoes()">Salvar Tudo</button>
+
+  <script>
+    const readerToBase64 = (file, callback) => {
+      const reader = new FileReader();
+      reader.onload = e => callback(e.target.result);
+      reader.readAsDataURL(file);
+    };
+
+    function salvarConfiguracoes() {
+      const campos = [
+        "titulo", "corPrincipal", "corFundo", "corTexto", "corTitulo", "corBorda",
+        "corRodapeTexto", "corRodapeFundo", "corOutrasLigasBtn", "corTopoBtn",
+        "fonteSite", "logoUrl"
+      ];
+
+      campos.forEach(id => {
+        localStorage.setItem(id, document.getElementById(id).value);
+      });
+
+      localStorage.setItem("mostrarTabelaMedidas", document.getElementById("mostrarTabelaMedidas").checked);
+
+      // Fundo site e header
+      const fs = document.getElementById("fundoSite").files[0];
+      const fh = document.getElementById("fundoHeader").files[0];
+
+      if (fs) readerToBase64(fs, data => localStorage.setItem("fundoSite", data));
+      if (fh) readerToBase64(fh, data => localStorage.setItem("fundoHeader", data));
+
+      // Salvar blocos
+      const blocos = JSON.parse(localStorage.getItem("blocosPersonalizados") || "[]");
+      localStorage.setItem("blocosPersonalizados", JSON.stringify(blocos));
+
+      alert("Configurações salvas com sucesso!");
+    }
+
+    function adicionarBloco() {
+      const titulo = document.getElementById("blocoTitulo").value;
+      const texto = document.getElementById("blocoTexto").value;
+      const btnTexto = document.getElementById("blocoBtnTexto").value;
+      const btnLink = document.getElementById("blocoBtnLink").value;
+      const posicao = document.getElementById("blocoPosicao").value;
+      const imagemInput = document.getElementById("blocoImagem");
+
+      if (!titulo && !texto) return alert("Preencha pelo menos o título ou o texto.");
+
+      const imagemFile = imagemInput.files[0];
+
+      const salvar = (imagemBase64) => {
+        const bloco = {
+          titulo,
+          texto,
+          btnTexto,
+          btnLink,
+          imagem: imagemBase64 || "",
+          posicao
+        };
+
+        const blocos = JSON.parse(localStorage.getItem("blocosPersonalizados") || "[]");
+        blocos.push(bloco);
+        localStorage.setItem("blocosPersonalizados", JSON.stringify(blocos));
+        listarBlocos();
+      };
+
+      if (imagemFile) {
+        readerToBase64(imagemFile, salvar);
+      } else {
+        salvar();
+      }
+    }
+
+    function listarBlocos() {
+      const container = document.getElementById("blocosLista");
+      container.innerHTML = "";
+      const blocos = JSON.parse(localStorage.getItem("blocosPersonalizados") || "[]");
+      blocos.forEach((b, i) => {
+        const div = document.createElement("div");
+        div.className = "bloco-container";
+        div.innerHTML = `
+          <h4>${b.titulo || "Sem Título"}</h4>
+          <p>${b.texto || ""}</p>
+          <p><strong>Posição:</strong> ${b.posicao}</p>
+          <button onclick="removerBloco(${i})">Remover</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function preencherCampos() {
+      const campos = [
+        "titulo", "corPrincipal", "corFundo", "corTexto", "corTitulo", "corBorda",
+        "corRodapeTexto", "corRodapeFundo", "corOutrasLigasBtn", "corTopoBtn",
+        "fonteSite", "logoUrl"
+      ];
+
+      campos.forEach(id => {
+        const valor = localStorage.getItem(id);
+        if (valor !== null) document.getElementById(id).value = valor;
+      });
+
+      const mostrar = localStorage.getItem("mostrarTabelaMedidas");
+      document.getElementById("mostrarTabelaMedidas").checked = (mostrar === "true");
+
+      listarBlocos();
+    }
+
+    function removerBloco(index) {
+      const blocos = JSON.parse(localStorage.getItem("blocosPersonalizados") || "[]");
+      blocos.splice(index, 1);
+      localStorage.setItem("blocosPersonalizados", JSON.stringify(blocos));
+      listarBlocos();
+    }
+
+    preencherCampos();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,643 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>123 TESTE - Catálogo</title>
+
+<style>
+  :root {
+    --cor-principal: #FF9A00;
+    --cor-fundo: #ffffff;
+    --cor-texto: #000000;
+    --cor-borda: #FF9A00;
+    --cor-rodape-texto: #ffffff;
+    --cor-rodape-fundo: #000000;
+    --cor-outras-ligas-btn: #FF9A00;
+    --cor-topo-btn: #FF9A00;
+    --fonte-site: 'Arial, sans-serif';
+    --fundo-site: none;
+    --fundo-header: none;
+  }
+
+  body {
+    font-family: var(--fonte-site);
+    background: var(--fundo-site), var(--cor-fundo);
+    margin: 0;
+    padding: 0;
+    color: var(--cor-texto);
+  }
+
+  header {
+    background: var(--fundo-header), var(--cor-principal);
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  .menu-rapido-titulo {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 30px 0 10px;
+    color: var(--cor-principal);
+  }
+
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 20px 30px;
+  }
+
+  .menu-item {
+    background: white;
+    border: 2px solid var(--cor-borda);
+    border-radius: 10px;
+    width: 160px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .menu-item img {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .menu-item h3 {
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: var(--cor-texto);
+  }
+
+  .ver-button {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 12px;
+    background-color: var(--cor-principal);
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .ver-button:hover {
+    background-color: #e08800;
+  }
+
+  .precos-container,
+  .ligas-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 20px 30px;
+  }
+
+  .preco-card,
+  .liga-card {
+    display: inline-block;
+    background: #fff;
+    border: 2px solid var(--cor-borda);
+    border-radius: 10px;
+    padding: 15px;
+    margin-right: 15px;
+    min-width: 160px;
+    text-align: center;
+    vertical-align: top;
+    box-sizing: border-box;
+  }
+
+  .preco-card h4 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: var(--cor-texto);
+  }
+
+  .preco-card p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--cor-principal);
+  }
+
+  .liga-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .liga-card p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--cor-texto);
+  }
+
+  .liga-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  hr {
+    border: none;
+    border-top: 2px solid var(--cor-borda);
+    margin: 40px 20px;
+  }
+
+  footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    background-color: var(--cor-rodape-fundo);
+    color: var(--cor-rodape-texto);
+  }
+
+  footer a {
+    color: var(--cor-principal);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  #topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--cor-topo-btn);
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  #topBtn:hover {
+    background-color: #e68900;
+  }
+
+  button#toggleBtn {
+    color: var(--cor-outras-ligas-btn);
+  }
+
+  /* TABELAS DE MEDIDAS */
+  .tabela-medidas {
+  display: inline-block;
+  vertical-align: top;
+  background: #fff;
+  border: 2px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 15px;
+  text-align: left;
+  box-sizing: border-box;
+  height: 290px; /* Altura fixa para todos os blocos */
+}
+
+.tabela-medidas h4 {
+  font-size: 16px;
+  color: var(--cor-texto);
+  margin: 0 0 6px;
+	text-align: center;
+}
+
+.tabela-medidas p {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--cor-principal);
+  margin: 0 0 8px;
+	text-align: center;
+}
+
+/* Wrapper da imagem + tabela */
+.tabela-com-imagem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  height: calc(100% - 60px); /* Espaço restante após o título e descrição */
+}
+
+/* Imagem à esquerda */
+.tabela-com-imagem img {
+  flex-shrink: 0;
+  max-width: 50px;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Tabela compacta à direita */
+.tabela-com-imagem table {
+  width: auto; /* Largura natural conforme conteúdo */
+  font-size: 12px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.tabela-com-imagem th,
+.tabela-com-imagem td {
+  padding: 4px;
+  border: 1px solid #ccc;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tabela-com-imagem th {
+  background-color: var(--cor-principal);
+  color: white;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+  <header style="display: flex; flex-direction: column; align-items: center; padding: 20px; background: #000000; color: #ffffff;">
+  <img id="logo" src="" alt="Logo" style="max-height: 60px; display: none; margin-bottom: 10px;" />
+  <h1>123 TESTE - Catálogo</h1>
+</header>
+
+  <div class="menu-rapido-titulo">Menu Rápido</div>
+  <div class="menu">
+    <div class="menu-item">
+      <img src="https://www.futbolemotion.com/imagesarticulos/260775/grandes/camiseta-nike-psg-primera-equipacion-2025-2026-midnight-navy-midnight-navy-white-full-spon-h-0.webp" alt="Camisolas" />
+      <h3>Camisolas</h3>
+      <a class="ver-button" href="#">VER</a>
+    </div>
+    <div class="menu-item">
+      <img src="https://legends.broadleafcloud.com/api/asset/content/RMCFIO0043_03.jpg?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H4RD9NXMKQBQ1WVKM1181VD8%22,%22tenantId%22:%22REAL_MADRID%22%7D" alt="Kits Criança" />
+      <h3>Kits de Criança</h3>
+      <a class="ver-button" href="#">VER</a>
+    </div>
+    <div class="menu-item">
+      <img src="https://mufc-live.cdn.scayle.cloud/images/8d0189393899886ccec7a50bb6c1a8d7.jpg?brightness=1&width=1536&height=2048&quality=70&bg=ffffff" alt="Retro" />
+      <h3>Camisolas Retro</h3>
+      <a class="ver-button" href="#">VER</a>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/150" alt="Fatos de treino" />
+      <h3>Fatos de treino</h3>
+      <a class="ver-button" href="#">VER</a>
+    </div>
+  </div>
+
+  <hr>
+<div class="menu-rapido-titulo" id="precosTitulo">Preços</div>
+<div class="precos-container" id="blocosPrecos"></div>
+
+  <hr>
+
+  <div class="menu-rapido-titulo">Ver por ligas</div>
+<div class="ligas-container">
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/pt/5/5f/Liga_Portugal_Betclic_2023.png" alt="Liga Portuguesa"><p>Liga Portuguesa</p></a>
+  </div>
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/LaLiga_EA_Sports_2023_Vertical_Logo.svg/1920px-LaLiga_EA_Sports_2023_Vertical_Logo.svg.png" alt="La Liga"><p>La Liga</p></a>
+  </div>
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/240px-Premier_League_Logo.svg.png" alt="Premier League"><p>Premier League</p></a>
+  </div>
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Bundesliga_logo_%282017%29.svg/240px-Bundesliga_logo_%282017%29.svg.png" alt="Bundesliga"><p>Bundesliga</p></a>
+  </div>
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ab/Serie_A_ENILIVE_logo.svg/1498px-Serie_A_ENILIVE_logo.svg.png" alt="Serie A"><p>Serie A</p></a>
+  </div>
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Logo_Ligue_1_McDonald%27s_2024.svg/1428px-Logo_Ligue_1_McDonald%27s_2024.svg.png" alt="Ligue 1"><p>Ligue 1</p></a>
+  </div>
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/pt/7/75/Campeonato_Brasileiro_de_Futebol_de_2024_-_S%C3%A9rie_A.png" alt="Brasileirão"><p>Brasileirão</p></a>
+  </div>
+</div>
+ <div class="menu-rapido-titulo">
+  <button onclick="toggleLigas()" id="toggleBtn" style="font-size: 18px; font-weight: bold; background: none; border: none; cursor: pointer;">
+    ▶ Outras ligas
+  </button>
+</div>
+
+<div class="ligas-container" id="outrasLigas" style="display: none;">
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/e/ef/Major_League_Soccer_logo.svg" alt="MLS"><p>MLS</p></a>
+  </div>
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/f/fb/Eredivisie_logo_2017.svg" alt="Eredivisie"><p>Eredivisie</p></a>
+  </div>
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Primeira_Divisi%C3%B3n_Argentina_logo.svg" alt="Liga Argentina"><p>Liga Argentina</p></a>
+  </div>
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Super_Lig_logo_2022.svg" alt="Super Lig"><p>Süper Lig</p></a>
+  </div>
+  <div class="liga-card">
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/10/Saudi_Pro_League_logo_2023.svg" alt="Saudi Pro League"><p>Saudi Pro League</p></a>
+  </div>
+</div>
+
+<script>
+  function toggleLigas() {
+    const container = document.getElementById("outrasLigas");
+    const button = document.getElementById("toggleBtn");
+
+    if (container.style.display === "none") {
+      container.style.display = "block";
+      button.innerHTML = "▼ Outras ligas";
+    } else {
+      container.style.display = "none";
+      button.innerHTML = "▶ Outras ligas";
+    }
+  }
+</script>
+
+
+
+<hr>
+<div class="menu-rapido-titulo">Tabela de Medidas</div>
+<div class="precos-container">
+  <!-- CAMISOLA FAN -->
+  <div class="tabela-medidas">
+    <h4>Camisola FA</h4>
+    <p><strong>Torcedor | Fan</strong></p>
+    <div class="tabela-com-imagem">
+      <img src="https://via.placeholder.com/60x60?text=Fan" alt="Camisola Fan">
+      <table>
+        <thead>
+          <tr>
+            <th>Tam.</th>
+            <th>Comp.</th>
+            <th>Largura</th>
+            <th>Altura</th>
+            <th>Peso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>P (S)</td><td>69–71</td><td>53–55</td><td>162–170</td><td>50–62</td></tr>
+          <tr><td>M (M)</td><td>71–73</td><td>55–57</td><td>170–175</td><td>62–78</td></tr>
+          <tr><td>G (L)</td><td>73–75</td><td>57–58</td><td>175–182</td><td>78–83</td></tr>
+          <tr><td>GG (XL)</td><td>75–78</td><td>60–61</td><td>183–190</td><td>83–90</td></tr>
+          <tr><td>2XL</td><td>78–81</td><td>62–64</td><td>190–197</td><td>90–97</td></tr>
+          <tr><td>3XL</td><td>81–83</td><td>64–66</td><td>197–204</td><td>97–104</td></tr>
+          <tr><td>4XL</td><td>83–85</td><td>66–70</td><td>204–210</td><td>104–110</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CAMISOLA JOGADOR -->
+  <div class="tabela-medidas">
+    <h4>Camisola Jogador</h4>
+    <p><strong>Jogador | Player</strong></p>
+    <div class="tabela-com-imagem">
+      <img src="https://store.fcbarcelona.com/cdn/shop/files/HJ5216-456_431720906_D_P_1X1_fa8e1d3f-8094-4dc8-b5b0-7e2a097620db.jpg?v=1751430787&width=1200" alt="Camisola Jogador">
+      <table>
+        <thead>
+          <tr>
+            <th>Tam.</th>
+            <th>Comp.</th>
+            <th>Largura</th>
+            <th>Altura</th>
+            <th>Peso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>P (S)</td><td>69–71</td><td>49–51</td><td>162–170</td><td>50–62</td></tr>
+          <tr><td>M (M)</td><td>71–73</td><td>51–53</td><td>170–175</td><td>62–75</td></tr>
+          <tr><td>G (L)</td><td>73–75</td><td>53–55</td><td>175–180</td><td>75–80</td></tr>
+          <tr><td>GG (XL)</td><td>75–76</td><td>55–57</td><td>180–185</td><td>80–85</td></tr>
+          <tr><td>2XL</td><td>76–78</td><td>57–60</td><td>185–190</td><td>85–90</td></tr>
+          <tr><td>3XL</td><td>78–82</td><td>60–62</td><td>190–195</td><td>90–95</td></tr>
+          <tr><td>4XL</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- KIT INFANTIL -->
+  <div class="tabela-medidas">
+    <h4>Kit de Criança</h4>
+    <p><strong>Infantil | Kids</strong></p>
+    <div class="tabela-com-imagem">
+      <img src="https://via.placeholder.com/60x60?text=Kids" alt="Kit Infantil">
+      <table>
+        <thead>
+          <tr>
+            <th>Tam. (cm)</th>
+            <th>Idade</th>
+            <th>Altura</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>16</td><td>3–4</td><td>95–105</td></tr>
+          <tr><td>18</td><td>4–5</td><td>105–115</td></tr>
+          <tr><td>20</td><td>5–6</td><td>115–125</td></tr>
+          <tr><td>22</td><td>7–8</td><td>125–135</td></tr>
+          <tr><td>24</td><td>9–10</td><td>135–145</td></tr>
+          <tr><td>26</td><td>10–11</td><td>145–155</td></tr>
+          <tr><td>28</td><td>12–13</td><td>155–165</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ... (todo o conteúdo anterior permanece igual) ... -->
+
+  <footer>
+  <p>Desde 2023 a garantir o melhor serviço e a melhor qualidade aos nossos clientes.</p>
+  <p>Estamos ao teu dispor para tirar qualquer dúvida que tenhas.</p>
+  <p>
+    Instagram - <span class="destaque">@teuinstagram</span><br>
+    WhatsApp - <span class="destaque">Fala connosco</span>
+  </p>
+</footer>
+
+  <!-- Botão Voltar ao Topo -->
+  <button onclick="scrollToTop()" id="topBtn" title="Voltar ao topo">⬆️</button>
+
+  <!-- Script do botão -->
+<script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.onscroll = function () {
+    const topBtn = document.getElementById("topBtn");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      topBtn.style.opacity = "1";
+      topBtn.style.pointerEvents = "auto";
+    } else {
+      topBtn.style.opacity = "0";
+      topBtn.style.pointerEvents = "none";
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const configuracoes = [
+      "titulo",
+      "corPrincipal",
+      "corFundo",
+      "corTexto",
+      "logoUrl",
+      "corBorda",
+      "corRodapeTexto",
+      "corRodapeFundo",
+      "corOutrasLigasBtn",
+      "corTopoBtn",
+      "fonteSite",
+      "fundoSite",
+      "fundoHeader",
+      "mostrarTabelaMedidas"
+    ];
+
+    configuracoes.forEach((item) => {
+      const valor = localStorage.getItem(item);
+      if (valor) {
+        switch (item) {
+          case "titulo":
+            document.querySelector("header h1").textContent = valor;
+            break;
+          case "logoUrl":
+            const logo = document.getElementById("logo");
+            if (logo) {
+              logo.src = valor;
+              logo.style.display = "block";
+            }
+            break;
+          case "fundoSite":
+            document.body.style.backgroundImage = valor ? `url('${valor}')` : "none";
+            break;
+          case "fundoHeader":
+            document.querySelector("header").style.backgroundImage = valor ? `url('${valor}')` : "none";
+            break;
+          case "mostrarTabelaMedidas":
+            const mostrarTabela = valor === "true";
+            const titulos = document.querySelectorAll(".menu-rapido-titulo");
+            const tituloTabela = Array.from(titulos).find(t => t.textContent.includes("Tabela de Medidas"));
+            const containerTabela = tituloTabela?.nextElementSibling;
+            if (tituloTabela && containerTabela) {
+              tituloTabela.style.display = mostrarTabela ? "block" : "none";
+              containerTabela.style.display = mostrarTabela ? "flex" : "none";
+            }
+            break;
+          default:
+            document.documentElement.style.setProperty(`--${item.replace(/([A-Z])/g, "-$1").toLowerCase()}`, valor);
+        }
+      }
+    });
+
+    // RENDERIZAÇÃO DOS BLOCOS DE PREÇO
+    const blocosJSON = localStorage.getItem("blocosPreco");
+    if (blocosJSON) {
+      const blocos = JSON.parse(blocosJSON);
+      const container = document.querySelector(".precos-container");
+
+      if (container && blocos.length > 0) {
+        container.innerHTML = ""; // Limpa blocos antigos
+
+        blocos.forEach((b) => {
+          const card = document.createElement("div");
+          card.className = "preco-card";
+          card.innerHTML = `<h4>${b.titulo}</h4><p>${b.valor}</p>`;
+          container.appendChild(card);
+        });
+      }
+    }
+  });
+	
+	// RENDERIZAR BLOCOS PERSONALIZADOS
+const blocosPersonalizados = JSON.parse(localStorage.getItem("blocosPersonalizados") || "[]");
+
+blocosPersonalizados.forEach(bloco => {
+  const container = document.createElement("div");
+  container.className = "bloco-personalizado";
+  container.style.border = "2px solid var(--cor-borda)";
+  container.style.borderRadius = "10px";
+  container.style.padding = "15px";
+  container.style.margin = "20px";
+  container.style.backgroundColor = "#fff";
+  container.style.textAlign = "center";
+
+  if (bloco.titulo) {
+    const h3 = document.createElement("h3");
+    h3.textContent = bloco.titulo;
+    h3.style.color = "var(--cor-texto)";
+    container.appendChild(h3);
+  }
+
+  if (bloco.texto) {
+    const p = document.createElement("p");
+    p.textContent = bloco.texto;
+    p.style.color = "var(--cor-texto)";
+    container.appendChild(p);
+  }
+
+  if (bloco.imagem) {
+    const img = document.createElement("img");
+    img.src = bloco.imagem;
+    img.style.maxWidth = "100%";
+    img.style.borderRadius = "8px";
+    img.style.marginTop = "10px";
+    container.appendChild(img);
+  }
+
+  if (bloco.botaoTexto && bloco.botaoLink) {
+    const btn = document.createElement("a");
+    btn.href = bloco.botaoLink;
+    btn.textContent = bloco.botaoTexto;
+    btn.style.display = "inline-block";
+    btn.style.marginTop = "10px";
+    btn.style.padding = "10px 15px";
+    btn.style.backgroundColor = "var(--cor-principal)";
+    btn.style.color = "white";
+    btn.style.borderRadius = "5px";
+    btn.style.textDecoration = "none";
+    btn.style.fontWeight = "bold";
+    container.appendChild(btn);
+  }
+
+  // Inserir no local correto
+  const posicao = bloco.posicao;
+  let alvo;
+
+  switch (posicao) {
+    case "antes-menu":
+      alvo = document.querySelector(".menu-rapido-titulo");
+      alvo?.parentNode.insertBefore(container, alvo);
+      break;
+    case "antes-ligas":
+      alvo = Array.from(document.querySelectorAll(".menu-rapido-titulo"))
+        .find(el => el.textContent.includes("Ver por ligas"));
+      alvo?.parentNode.insertBefore(container, alvo);
+      break;
+    case "antes-rodape":
+      alvo = document.querySelector("footer");
+      alvo?.parentNode.insertBefore(container, alvo);
+      break;
+    default:
+      document.body.appendChild(container);
+  }
+});
+</script>
+</body>
+</html>
+
+</body>
+</html>
