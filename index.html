@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="pt">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -199,79 +201,94 @@
 
   /* TABELAS DE MEDIDAS */
   .tabela-medidas {
-  display: inline-block;
-  vertical-align: top;
-  background: #fff;
-  border: 2px solid var(--cor-borda);
-  border-radius: 10px;
-  padding: 10px;
-  margin-right: 15px;
-  text-align: left;
-  box-sizing: border-box;
-  height: 290px; /* Altura fixa para todos os blocos */
-}
+    display: inline-block;
+    vertical-align: top;
+    background: #fff;
+    border: 2px solid var(--cor-borda);
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 15px;
+    text-align: left;
+    box-sizing: border-box;
+    height: 290px; /* Altura fixa para todos os blocos */
+  }
 
-.tabela-medidas h4 {
-  font-size: 16px;
-  color: var(--cor-texto);
-  margin: 0 0 6px;
-	text-align: center;
-}
+  .tabela-medidas h4 {
+    font-size: 16px;
+    color: var(--cor-texto);
+    margin: 0 0 6px;
+    text-align: center;
+  }
 
-.tabela-medidas p {
-  font-size: 14px;
-  font-weight: bold;
-  color: var(--cor-principal);
-  margin: 0 0 8px;
-	text-align: center;
-}
+  .tabela-medidas p {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--cor-principal);
+    margin: 0 0 8px;
+    text-align: center;
+  }
 
-/* Wrapper da imagem + tabela */
-.tabela-com-imagem {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: nowrap;
-  height: calc(100% - 60px); /* Espaço restante após o título e descrição */
-}
+  .tabela-com-imagem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    height: calc(100% - 60px);
+  }
 
-/* Imagem à esquerda */
-.tabela-com-imagem img {
-  flex-shrink: 0;
-  max-width: 50px;
-  height: auto;
-  border-radius: 8px;
-}
+  .tabela-com-imagem img {
+    flex-shrink: 0;
+    max-width: 50px;
+    height: auto;
+    border-radius: 8px;
+  }
 
-/* Tabela compacta à direita */
-.tabela-com-imagem table {
-  width: auto; /* Largura natural conforme conteúdo */
-  font-size: 12px;
-  border-collapse: collapse;
-  background: #fff;
-}
+  .tabela-com-imagem table {
+    width: auto;
+    font-size: 12px;
+    border-collapse: collapse;
+    background: #fff;
+  }
 
-.tabela-com-imagem th,
-.tabela-com-imagem td {
-  padding: 4px;
-  border: 1px solid #ccc;
-  text-align: center;
-  white-space: nowrap;
-}
+  .tabela-com-imagem th,
+  .tabela-com-imagem td {
+    padding: 4px;
+    border: 1px solid #ccc;
+    text-align: center;
+    white-space: nowrap;
+  }
 
-.tabela-com-imagem th {
-  background-color: var(--cor-principal);
-  color: white;
-  font-weight: bold;
-}
+  .tabela-com-imagem th {
+    background-color: var(--cor-principal);
+    color: white;
+    font-weight: bold;
+  }
+
+  /* ⚙️ Botão de personalização sempre visível */
+  #personalizarBtn {
+    position: fixed;
+    bottom: 80px;           /* acima do botão de topo */
+    right: 20px;
+    background-color: var(--cor-principal);
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    z-index: 1001;
+    transition: background-color 0.3s ease;
+  }
+  #personalizarBtn:hover { background-color: #e68900; }
 </style>
 </head>
 <body>
 
   <header style="display: flex; flex-direction: column; align-items: center; padding: 20px; background: #000000; color: #ffffff;">
-  <img id="logo" src="" alt="Logo" style="max-height: 60px; display: none; margin-bottom: 10px;" />
-  <h1>123 TESTE - Catálogo</h1>
-</header>
+    <img id="logo" src="" alt="Logo" style="max-height: 60px; display: none; margin-bottom: 10px;" />
+    <h1>123 TESTE - Catálogo</h1>
+  </header>
 
   <div class="menu-rapido-titulo">Menu Rápido</div>
   <div class="menu">
@@ -298,181 +315,163 @@
   </div>
 
   <hr>
-<div class="menu-rapido-titulo" id="precosTitulo">Preços</div>
-<div class="precos-container" id="blocosPrecos"></div>
+  <div class="menu-rapido-titulo" id="precosTitulo">Preços</div>
+  <div class="precos-container" id="blocosPrecos"></div>
 
   <hr>
 
   <div class="menu-rapido-titulo">Ver por ligas</div>
-<div class="ligas-container">
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/pt/5/5f/Liga_Portugal_Betclic_2023.png" alt="Liga Portuguesa"><p>Liga Portuguesa</p></a>
-  </div>
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/LaLiga_EA_Sports_2023_Vertical_Logo.svg/1920px-LaLiga_EA_Sports_2023_Vertical_Logo.svg.png" alt="La Liga"><p>La Liga</p></a>
-  </div>
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/240px-Premier_League_Logo.svg.png" alt="Premier League"><p>Premier League</p></a>
-  </div>
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Bundesliga_logo_%282017%29.svg/240px-Bundesliga_logo_%282017%29.svg.png" alt="Bundesliga"><p>Bundesliga</p></a>
-  </div>
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ab/Serie_A_ENILIVE_logo.svg/1498px-Serie_A_ENILIVE_logo.svg.png" alt="Serie A"><p>Serie A</p></a>
-  </div>
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Logo_Ligue_1_McDonald%27s_2024.svg/1428px-Logo_Ligue_1_McDonald%27s_2024.svg.png" alt="Ligue 1"><p>Ligue 1</p></a>
-  </div>
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/pt/7/75/Campeonato_Brasileiro_de_Futebol_de_2024_-_S%C3%A9rie_A.png" alt="Brasileirão"><p>Brasileirão</p></a>
-  </div>
-</div>
- <div class="menu-rapido-titulo">
-  <button onclick="toggleLigas()" id="toggleBtn" style="font-size: 18px; font-weight: bold; background: none; border: none; cursor: pointer;">
-    ▶ Outras ligas
-  </button>
-</div>
-
-<div class="ligas-container" id="outrasLigas" style="display: none;">
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/e/ef/Major_League_Soccer_logo.svg" alt="MLS"><p>MLS</p></a>
-  </div>
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/f/fb/Eredivisie_logo_2017.svg" alt="Eredivisie"><p>Eredivisie</p></a>
-  </div>
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Primeira_Divisi%C3%B3n_Argentina_logo.svg" alt="Liga Argentina"><p>Liga Argentina</p></a>
-  </div>
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Super_Lig_logo_2022.svg" alt="Super Lig"><p>Süper Lig</p></a>
-  </div>
-  <div class="liga-card">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/10/Saudi_Pro_League_logo_2023.svg" alt="Saudi Pro League"><p>Saudi Pro League</p></a>
-  </div>
-</div>
-
-<script>
-  function toggleLigas() {
-    const container = document.getElementById("outrasLigas");
-    const button = document.getElementById("toggleBtn");
-
-    if (container.style.display === "none") {
-      container.style.display = "block";
-      button.innerHTML = "▼ Outras ligas";
-    } else {
-      container.style.display = "none";
-      button.innerHTML = "▶ Outras ligas";
-    }
-  }
-</script>
-
-
-
-<hr>
-<div class="menu-rapido-titulo">Tabela de Medidas</div>
-<div class="precos-container">
-  <!-- CAMISOLA FAN -->
-  <div class="tabela-medidas">
-    <h4>Camisola FA</h4>
-    <p><strong>Torcedor | Fan</strong></p>
-    <div class="tabela-com-imagem">
-      <img src="https://via.placeholder.com/60x60?text=Fan" alt="Camisola Fan">
-      <table>
-        <thead>
-          <tr>
-            <th>Tam.</th>
-            <th>Comp.</th>
-            <th>Largura</th>
-            <th>Altura</th>
-            <th>Peso</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>P (S)</td><td>69–71</td><td>53–55</td><td>162–170</td><td>50–62</td></tr>
-          <tr><td>M (M)</td><td>71–73</td><td>55–57</td><td>170–175</td><td>62–78</td></tr>
-          <tr><td>G (L)</td><td>73–75</td><td>57–58</td><td>175–182</td><td>78–83</td></tr>
-          <tr><td>GG (XL)</td><td>75–78</td><td>60–61</td><td>183–190</td><td>83–90</td></tr>
-          <tr><td>2XL</td><td>78–81</td><td>62–64</td><td>190–197</td><td>90–97</td></tr>
-          <tr><td>3XL</td><td>81–83</td><td>64–66</td><td>197–204</td><td>97–104</td></tr>
-          <tr><td>4XL</td><td>83–85</td><td>66–70</td><td>204–210</td><td>104–110</td></tr>
-        </tbody>
-      </table>
+  <div class="ligas-container">
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/pt/5/5f/Liga_Portugal_Betclic_2023.png" alt="Liga Portuguesa"><p>Liga Portuguesa</p></a>
+    </div>
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/LaLiga_EA_Sports_2023_Vertical_Logo.svg/1920px-LaLiga_EA_Sports_2023_Vertical_Logo.svg.png" alt="La Liga"><p>La Liga</p></a>
+    </div>
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/240px-Premier_League_Logo.svg.png" alt="Premier League"><p>Premier League</p></a>
+    </div>
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Bundesliga_logo_%282017%29.svg/240px-Bundesliga_logo_%282017%29.svg.png" alt="Bundesliga"><p>Bundesliga</p></a>
+    </div>
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ab/Serie_A_ENILIVE_logo.svg/1498px-Serie_A_ENILIVE_logo.svg.png" alt="Serie A"><p>Serie A</p></a>
+    </div>
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Logo_Ligue_1_McDonald%27s_2024.svg/1428px-Logo_Ligue_1_McDonald%27s_2024.svg.png" alt="Ligue 1"><p>Ligue 1</p></a>
+    </div>
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/pt/7/75/Campeonato_Brasileiro_de_Futebol_de_2024_-_S%C3%A9rie_A.png" alt="Brasileirão"><p>Brasileirão</p></a>
     </div>
   </div>
 
-  <!-- CAMISOLA JOGADOR -->
-  <div class="tabela-medidas">
-    <h4>Camisola Jogador</h4>
-    <p><strong>Jogador | Player</strong></p>
-    <div class="tabela-com-imagem">
-      <img src="https://store.fcbarcelona.com/cdn/shop/files/HJ5216-456_431720906_D_P_1X1_fa8e1d3f-8094-4dc8-b5b0-7e2a097620db.jpg?v=1751430787&width=1200" alt="Camisola Jogador">
-      <table>
-        <thead>
-          <tr>
-            <th>Tam.</th>
-            <th>Comp.</th>
-            <th>Largura</th>
-            <th>Altura</th>
-            <th>Peso</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>P (S)</td><td>69–71</td><td>49–51</td><td>162–170</td><td>50–62</td></tr>
-          <tr><td>M (M)</td><td>71–73</td><td>51–53</td><td>170–175</td><td>62–75</td></tr>
-          <tr><td>G (L)</td><td>73–75</td><td>53–55</td><td>175–180</td><td>75–80</td></tr>
-          <tr><td>GG (XL)</td><td>75–76</td><td>55–57</td><td>180–185</td><td>80–85</td></tr>
-          <tr><td>2XL</td><td>76–78</td><td>57–60</td><td>185–190</td><td>85–90</td></tr>
-          <tr><td>3XL</td><td>78–82</td><td>60–62</td><td>190–195</td><td>90–95</td></tr>
-          <tr><td>4XL</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
-        </tbody>
-      </table>
+  <div class="menu-rapido-titulo">
+    <button onclick="toggleLigas()" id="toggleBtn" style="font-size: 18px; font-weight: bold; background: none; border: none; cursor: pointer;">
+      ▶ Outras ligas
+    </button>
+  </div>
+
+  <div class="ligas-container" id="outrasLigas" style="display: none;">
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/e/ef/Major_League_Soccer_logo.svg" alt="MLS"><p>MLS</p></a>
+    </div>
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/f/fb/Eredivisie_logo_2017.svg" alt="Eredivisie"><p>Eredivisie</p></a>
+    </div>
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Primeira_Divisi%C3%B3n_Argentina_logo.svg" alt="Liga Argentina"><p>Liga Argentina</p></a>
+    </div>
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Super_Lig_logo_2022.svg" alt="Super Lig"><p>Süper Lig</p></a>
+    </div>
+    <div class="liga-card">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/10/Saudi_Pro_League_logo_2023.svg" alt="Saudi Pro League"><p>Saudi Pro League</p></a>
     </div>
   </div>
 
-  <!-- KIT INFANTIL -->
-  <div class="tabela-medidas">
-    <h4>Kit de Criança</h4>
-    <p><strong>Infantil | Kids</strong></p>
-    <div class="tabela-com-imagem">
-      <img src="https://via.placeholder.com/60x60?text=Kids" alt="Kit Infantil">
-      <table>
-        <thead>
-          <tr>
-            <th>Tam. (cm)</th>
-            <th>Idade</th>
-            <th>Altura</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>16</td><td>3–4</td><td>95–105</td></tr>
-          <tr><td>18</td><td>4–5</td><td>105–115</td></tr>
-          <tr><td>20</td><td>5–6</td><td>115–125</td></tr>
-          <tr><td>22</td><td>7–8</td><td>125–135</td></tr>
-          <tr><td>24</td><td>9–10</td><td>135–145</td></tr>
-          <tr><td>26</td><td>10–11</td><td>145–155</td></tr>
-          <tr><td>28</td><td>12–13</td><td>155–165</td></tr>
-        </tbody>
-      </table>
+  <hr>
+  <div class="menu-rapido-titulo">Tabela de Medidas</div>
+  <div class="precos-container">
+    <!-- CAMISOLA FAN -->
+    <div class="tabela-medidas">
+      <h4>Camisola FA</h4>
+      <p><strong>Torcedor | Fan</strong></p>
+      <div class="tabela-com-imagem">
+        <img src="https://via.placeholder.com/60x60?text=Fan" alt="Camisola Fan">
+        <table>
+          <thead>
+            <tr>
+              <th>Tam.</th>
+              <th>Comp.</th>
+              <th>Largura</th>
+              <th>Altura</th>
+              <th>Peso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>P (S)</td><td>69–71</td><td>53–55</td><td>162–170</td><td>50–62</td></tr>
+            <tr><td>M (M)</td><td>71–73</td><td>55–57</td><td>170–175</td><td>62–78</td></tr>
+            <tr><td>G (L)</td><td>73–75</td><td>57–58</td><td>175–182</td><td>78–83</td></tr>
+            <tr><td>GG (XL)</td><td>75–78</td><td>60–61</td><td>183–190</td><td>83–90</td></tr>
+            <tr><td>2XL</td><td>78–81</td><td>62–64</td><td>190–197</td><td>90–97</td></tr>
+            <tr><td>3XL</td><td>81–83</td><td>64–66</td><td>197–204</td><td>97–104</td></tr>
+            <tr><td>4XL</td><td>83–85</td><td>66–70</td><td>204–210</td><td>104–110</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CAMISOLA JOGADOR -->
+    <div class="tabela-medidas">
+      <h4>Camisola Jogador</h4>
+      <p><strong>Jogador | Player</strong></p>
+      <div class="tabela-com-imagem">
+        <img src="https://store.fcbarcelona.com/cdn/shop/files/HJ5216-456_431720906_D_P_1X1_fa8e1d3f-8094-4dc8-b5b0-7e2a097620db.jpg?v=1751430787&width=1200" alt="Camisola Jogador">
+        <table>
+          <thead>
+            <tr>
+              <th>Tam.</th>
+              <th>Comp.</th>
+              <th>Largura</th>
+              <th>Altura</th>
+              <th>Peso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>P (S)</td><td>69–71</td><td>49–51</td><td>162–170</td><td>50–62</td></tr>
+            <tr><td>M (M)</td><td>71–73</td><td>51–53</td><td>170–175</td><td>62–75</td></tr>
+            <tr><td>G (L)</td><td>73–75</td><td>53–55</td><td>175–180</td><td>75–80</td></tr>
+            <tr><td>GG (XL)</td><td>75–76</td><td>55–57</td><td>180–185</td><td>80–85</td></tr>
+            <tr><td>2XL</td><td>76–78</td><td>57–60</td><td>185–190</td><td>85–90</td></tr>
+            <tr><td>3XL</td><td>78–82</td><td>60–62</td><td>190–195</td><td>90–95</td></tr>
+            <tr><td>4XL</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- KIT INFANTIL -->
+    <div class="tabela-medidas">
+      <h4>Kit de Criança</h4>
+      <p><strong>Infantil | Kids</strong></p>
+      <div class="tabela-com-imagem">
+        <img src="https://via.placeholder.com/60x60?text=Kids" alt="Kit Infantil">
+        <table>
+          <thead>
+            <tr>
+              <th>Tam. (cm)</th>
+              <th>Idade</th>
+              <th>Altura</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>16</td><td>3–4</td><td>95–105</td></tr>
+            <tr><td>18</td><td>4–5</td><td>105–115</td></tr>
+            <tr><td>20</td><td>5–6</td><td>115–125</td></tr>
+            <tr><td>22</td><td>7–8</td><td>125–135</td></tr>
+            <tr><td>24</td><td>9–10</td><td>135–145</td></tr>
+            <tr><td>26</td><td>10–11</td><td>145–155</td></tr>
+            <tr><td>28</td><td>12–13</td><td>155–165</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
-
-
-<!-- ... (todo o conteúdo anterior permanece igual) ... -->
 
   <footer>
-  <p>Desde 2023 a garantir o melhor serviço e a melhor qualidade aos nossos clientes.</p>
-  <p>Estamos ao teu dispor para tirar qualquer dúvida que tenhas.</p>
-  <p>
-    Instagram - <span class="destaque">@teuinstagram</span><br>
-    WhatsApp - <span class="destaque">Fala connosco</span>
-  </p>
-</footer>
+    <p>Desde 2023 a garantir o melhor serviço e a melhor qualidade aos nossos clientes.</p>
+    <p>Estamos ao teu dispor para tirar qualquer dúvida que tenhas.</p>
+    <p>
+      Instagram - <span class="destaque">@teuinstagram</span><br>
+      WhatsApp - <span class="destaque">Fala connosco</span>
+    </p>
+  </footer>
 
   <!-- Botão Voltar ao Topo -->
   <button onclick="scrollToTop()" id="topBtn" title="Voltar ao topo">⬆️</button>
+  <!-- Botão ⚙️ Personalização (com PIN) -->
+  <button id="personalizarBtn" title="Acessar personalização">⚙️</button>
 
-  <!-- Script do botão -->
 <script>
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -543,101 +542,54 @@
       }
     });
 
-    // RENDERIZAÇÃO DOS BLOCOS DE PREÇO
+    // RENDERIZAÇÃO DOS BLOCOS DE PREÇO (dinâmicos)
     const blocosJSON = localStorage.getItem("blocosPreco");
     if (blocosJSON) {
       const blocos = JSON.parse(blocosJSON);
-      const container = document.querySelector(".precos-container");
-
-      if (container && blocos.length > 0) {
-        container.innerHTML = ""; // Limpa blocos antigos
-
-        blocos.forEach((b) => {
-          const card = document.createElement("div");
-          card.className = "preco-card";
-          card.innerHTML = `<h4>${b.titulo}</h4><p>${b.valor}</p>`;
-          container.appendChild(card);
-        });
+      const container = document.getElementById("blocosPrecos");
+      const titulo = document.getElementById("precosTitulo");
+      if (container) {
+        container.innerHTML = "";
+        if (Array.isArray(blocos) && blocos.length > 0) {
+          titulo.style.display = "block";
+          container.style.display = "block";
+          blocos.forEach((b) => {
+            const card = document.createElement("div");
+            card.className = "preco-card";
+            card.innerHTML = `<h4>${b.titulo || ""}</h4><p>${b.valor || ""}</p>`;
+            container.appendChild(card);
+          });
+        } else {
+          // sem blocos -> oculta título e container
+          titulo.style.display = "none";
+          container.style.display = "none";
+        }
       }
     }
   });
-	
-	// RENDERIZAR BLOCOS PERSONALIZADOS
-const blocosPersonalizados = JSON.parse(localStorage.getItem("blocosPersonalizados") || "[]");
 
-blocosPersonalizados.forEach(bloco => {
-  const container = document.createElement("div");
-  container.className = "bloco-personalizado";
-  container.style.border = "2px solid var(--cor-borda)";
-  container.style.borderRadius = "10px";
-  container.style.padding = "15px";
-  container.style.margin = "20px";
-  container.style.backgroundColor = "#fff";
-  container.style.textAlign = "center";
-
-  if (bloco.titulo) {
-    const h3 = document.createElement("h3");
-    h3.textContent = bloco.titulo;
-    h3.style.color = "var(--cor-texto)";
-    container.appendChild(h3);
+  // Toggle "Outras ligas"
+  function toggleLigas() {
+    const container = document.getElementById("outrasLigas");
+    const button = document.getElementById("toggleBtn");
+    if (container.style.display === "none") {
+      container.style.display = "block";
+      button.innerHTML = "▼ Outras ligas";
+    } else {
+      container.style.display = "none";
+      button.innerHTML = "▶ Outras ligas";
+    }
   }
 
-  if (bloco.texto) {
-    const p = document.createElement("p");
-    p.textContent = bloco.texto;
-    p.style.color = "var(--cor-texto)";
-    container.appendChild(p);
-  }
-
-  if (bloco.imagem) {
-    const img = document.createElement("img");
-    img.src = bloco.imagem;
-    img.style.maxWidth = "100%";
-    img.style.borderRadius = "8px";
-    img.style.marginTop = "10px";
-    container.appendChild(img);
-  }
-
-  if (bloco.botaoTexto && bloco.botaoLink) {
-    const btn = document.createElement("a");
-    btn.href = bloco.botaoLink;
-    btn.textContent = bloco.botaoTexto;
-    btn.style.display = "inline-block";
-    btn.style.marginTop = "10px";
-    btn.style.padding = "10px 15px";
-    btn.style.backgroundColor = "var(--cor-principal)";
-    btn.style.color = "white";
-    btn.style.borderRadius = "5px";
-    btn.style.textDecoration = "none";
-    btn.style.fontWeight = "bold";
-    container.appendChild(btn);
-  }
-
-  // Inserir no local correto
-  const posicao = bloco.posicao;
-  let alvo;
-
-  switch (posicao) {
-    case "antes-menu":
-      alvo = document.querySelector(".menu-rapido-titulo");
-      alvo?.parentNode.insertBefore(container, alvo);
-      break;
-    case "antes-ligas":
-      alvo = Array.from(document.querySelectorAll(".menu-rapido-titulo"))
-        .find(el => el.textContent.includes("Ver por ligas"));
-      alvo?.parentNode.insertBefore(container, alvo);
-      break;
-    case "antes-rodape":
-      alvo = document.querySelector("footer");
-      alvo?.parentNode.insertBefore(container, alvo);
-      break;
-    default:
-      document.body.appendChild(container);
-  }
-});
+  // ⚙️ Acesso à personalização com PIN (1234)
+  document.getElementById("personalizarBtn").addEventListener("click", function () {
+    const pin = prompt("Digite o PIN de acesso:");
+    if (pin === "1234") {
+      window.location.href = "personalizacao.html";
+    } else if (pin !== null) {
+      alert("PIN incorreto!");
+    }
+  });
 </script>
-</body>
-</html>
-
 </body>
 </html>
